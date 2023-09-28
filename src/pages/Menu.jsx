@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { BiTrash } from "react-icons/bi";
+import { toast } from "react-toastify";
 
 const Menu = () => {
   const [items, setItems] = useState([]);
@@ -30,6 +31,11 @@ const Menu = () => {
 
   const tambahData = (e) => {
     e.preventDefault();
+
+    if (!menu || !harga) {
+      toast.error("Mohon isi semua data menu");
+      return;
+    }
     const newItem = {
       id: Date.now(),
       menu: menu,
